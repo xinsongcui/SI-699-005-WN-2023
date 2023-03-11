@@ -1,0 +1,50 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}
+ResultGames
+{% endblock %}
+
+{% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="/">Home</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+
+    
+
+        {{ wtf.quick_form(form, extra_classes = "form-inline my-2 my-lg-0") }}
+
+    </ul>  
+  </div>
+</nav>
+
+{% if results is not none %}
+<div class="accordion" id="accordionExample">
+  {% for key, result in results.iterrows() %}
+  <div class="card">
+    <div class="card-header" id="heading{{key}}">
+      <h5 class="mb-0">
+        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse{{key}}" aria-expanded="false" aria-controls="collapse{{key}}">
+          {{result['name']}}
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapse{{key}}" class="collapse show" aria-labelledby="heading{{key}}" data-parent="#accordionExample">
+      <div class="card-body">
+        {{result['summary']}}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p> No results were found!</p>
+{% endif %} 
+
+{% endblock %}

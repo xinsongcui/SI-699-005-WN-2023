@@ -103,11 +103,11 @@ def generate_recommendation(n_recommendation, userId):
     recommendation = recommendation[['name', 'summary', 'date', 'score', 'developer', 'genre']]
    
     if len(recommendation.index) < n_recommendation:
-        return recommendation.to_json(orient="split")
+        #return recommendation.to_json(orient="split")
+        return recommendation
     else:
-        return recommendation[0:n_recommendation].to_json(orient="split")
-    
-    return 
+        #return recommendation[0:n_recommendation].to_json(orient="split")
+        return recommendation[0:n_recommendation]
 
 def main():
     res = generate_recommendation(20)
