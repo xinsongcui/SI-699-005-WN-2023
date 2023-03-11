@@ -1,0 +1,17 @@
+from functools import partial
+from sqlite_s3_query import sqlite_s3_query
+import pandas as pd
+
+def get_credentials(_):
+    return (
+        "us-east-1", #region
+        "ASIAYJ5HVX6RTQKEPFWD", #aws_access_key_id                                                                         
+        "k3l9UucRJMyxbKzoP8Z5sKzfV0fIrcLlo8uj+WB7", #aws_secret_access_key                                                                   
+        #aws_session_token
+        "FwoGZXIvYXdzEDQaDK581zZwKdPEGoMiNyK8AU9IRHEN8zhEZWZF9SD8P/gD5K9Sc"
+        "wALqeo1WxgydfgqQe7KA8FLVQFOn3zHnTjuNJWTyixLxvyoopfLJxejQtcnCZy0NTn"
+        "5lt8C8KrxQRHMMUbeWOAouzQN0QKtOPFhyG1VwiFuYV0rMSjIKwqWpgeTTHuFjOF0C"
+        "0n9ybMBmPLBRNCgPsDiQxDcd9grZadd6rlidPIoA4o93NMnQ4z7ox7z2Cc+9MN4Ly54"
+        "XR4IcGSb8nVb7Sv1RNh17TEfKODoiqAGMi284Z+Xh5Nrk9/Dx87W3hEBXJnuZZqkSpg5T/XjcJm9Uv4wO+k1+KhmOPNjzZ8="
+    )
+
