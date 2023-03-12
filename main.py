@@ -3,10 +3,14 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for, f
 from flask_bootstrap import Bootstrap
 from game_recommender import generate_recommendation
 from forms import NameForm
+#from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 bootstrap = Bootstrap(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 
 '''
 @app.route('/', methods = ['GET', 'POST'])
@@ -31,12 +35,14 @@ def query_games(form):
 
 '''
 @app.route('/', methods = ['GET', 'POST'])
+@cross_origin()
 def home():
     if(request.method == 'GET'):
         data = "hello world"
         return jsonify({'data': data})
 
 @app.route('/user/<int:id>', methods = ['GET'])
+@cross_origin()
 def query_games(id):
     res = generate_recommendation(20, id).to_json(orient="split")
     return res
