@@ -8,25 +8,15 @@ app = Flask(__name__)
 app.secret_key = "supersecretkey"
 bootstrap = Bootstrap(app)
 
+'''
 @app.route('/', methods = ['GET', 'POST'])
 def home():
-    '''
-    if(request.method == 'GET'):
-        data = "hello world"
-        return jsonify({'data': data})
-    '''
+    
     form = NameForm(request.form)
     if request.method == 'POST':
         return query_games(form)
     
     return render_template('index.html', form=form)
-
-'''
-@app.route('/user/<int:id>', methods = ['GET'])
-def query_games(id):
-    res = generate_recommendation(20, id)
-    return res
-'''
 
 @app.route('/results')
 def query_games(form):
@@ -38,3 +28,17 @@ def query_games(form):
         return redirect(url_for('index'))
     else:
         return render_template('results.html', form=form, results=results)
+
+'''
+@app.route('/', methods = ['GET', 'POST'])
+def home():
+    if(request.method == 'GET'):
+        data = "hello world"
+        return jsonify({'data': data})
+
+@app.route('/user/<int:id>', methods = ['GET'])
+def query_games(id):
+    res = generate_recommendation(20, id).to_json(orient="split")
+    return res
+
+
