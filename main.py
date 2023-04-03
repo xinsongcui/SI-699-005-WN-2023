@@ -34,6 +34,7 @@ def query_games(form):
         return render_template('results.html', form=form, results=results)
 
 '''
+
 @app.route('/', methods = ['GET', 'POST'])
 @cross_origin()
 def home():
@@ -41,7 +42,7 @@ def home():
         data = "hello world"
         return jsonify({'data': data})
 
-@app.route('/user/<int:id>', methods = ['GET'])
+@app.route('/user/<id>', methods = ['GET'])
 @cross_origin()
 def query_games(id):
     res = generate_recommendation(20, id).to_json(orient="split")

@@ -25,6 +25,7 @@ def get_user_data(userId):
 
     userDict = {'userid': steamId, 'recentPlayedGames':[], 'ownedGames' : [], 'friendList': []}
     userGameList = list()
+        
     try:
         response = requests.get(recentPlayedApi).json()
         games = response['response']['games']
@@ -101,7 +102,7 @@ def generate_recommendation(n_recommendation, userId):
     recommendation = expanded_game_data.loc[expanded_game_data['name'].isin(listSuggestion)]
     recommendation = recommendation.loc[~recommendation['name'].isin(userGameList)]
     recommendation = recommendation.sort_values(by="score", ascending=False)
-    recommendation = recommendation[['name', 'summary', 'date', 'score', 'developer', 'genre']]
+    recommendation = recommendation[['name', 'appid', 'url', 'summary', 'date', 'score', 'developer', 'genre']]
    
     if len(recommendation.index) < n_recommendation:
         #return recommendation.to_json(orient="split")
